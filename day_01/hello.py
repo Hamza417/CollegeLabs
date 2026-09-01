@@ -1,0 +1,6 @@
+print('Hello, World')
+print("Hello, World")
+print("this is MANUU")
+print("Hello");print("World")
+print("Hello, World", end="                                        ")
+print("It will print on same line")
