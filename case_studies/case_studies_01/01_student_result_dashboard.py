@@ -1,4 +1,4 @@
-from utils import (
+from box_utils import (
     print_top_border,
     print_bottom_border,
     print_separator,
