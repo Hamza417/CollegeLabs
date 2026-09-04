@@ -62,7 +62,7 @@ print(f"Result of complex expression: {result}")
 # 6. Comparisons     : (15 in {5, 6} == True) -> (15 in {5, 6}) and ({5, 6} == True) -> False
 # 7. Booleans        : False and (not 0) or "fallback" -> False and True or "fallback" -> "fallback"
 # 8. Ternary         : "fallback" if (3 < 5) else None -> "fallback"
-result = ~2 ** 1 ** 3 * 5 // 2 % 7 << 2 >> 1 & 14 ^ 3 | 5 in {5, 6} == True and not 0 or "fallback" if 3 < 5 else None
+result = ~2 ** 1 ** 3 * 5 // 2 % 7 << 2 >> 1 & 14 ^ 3 | 5 in {5, 6} == True and not 0 or "fallback" if 6 < 5 else None
 print(f"Result of complex expression: {result}")
 
 # Step 1: Right-to-Left Exponentiation (** binds tighter than unary ~)
