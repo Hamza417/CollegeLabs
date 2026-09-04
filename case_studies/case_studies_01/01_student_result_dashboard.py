@@ -7,12 +7,12 @@ from box_utils import (
     render_marks
 )
 
+MAX_MARKS = 20 + 15 + 25 + 50 # 110 Total
 
 def generate_student_dashboard(name, student_id, internal, assignment, midterm, endsem, attendance):
     # ======= Academic Calculations =======
     total_marks = internal + assignment + midterm + endsem
-    max_marks = 20 + 15 + 25 + 50  # 110 total
-    percentage = (total_marks / max_marks) * 100
+    percentage = (total_marks / MAX_MARKS) * 100
 
     if percentage >= 90:
         grade = 'O'
@@ -56,6 +56,8 @@ def generate_student_dashboard(name, student_id, internal, assignment, midterm, 
     render_row("Examination Status", "ELIGIBLE" if is_eligible else "NOT ELIGIBLE")
     render_row("Final Result", "PASS" if is_pass else "FAIL")
     print_bottom_border()
+
+
 
 
 # ======= Execution & Test Cases =======

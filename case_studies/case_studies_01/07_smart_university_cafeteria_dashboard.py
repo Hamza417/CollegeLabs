@@ -3,7 +3,7 @@ from box_utils import (
     print_bottom_border,
     print_separator,
     render_title,
-    render_row
+    render_row 
 )
 
 
