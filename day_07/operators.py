@@ -44,21 +44,11 @@ print(f"{c} >> 1: {c >> 1} (Right Shift)")
 
 # Make a long chain using multiple operators to demonstrate precedence
 print("\nOperator Precedence:")
-# 1. Arithmetic & Shifts: ** > unary - > * > + > <<
-#    (-2 ** 2 * 3 + 1 << 2) cleanly reduces to -44.
-#
-# 2. Bitwise Hierarchy: & > ^ > |
-#    ((-44 & 15) ^ 7) resolves to 3, leaving `3 | <comparison>`.
-#
-# 3. Comparison Chains: == and `in` share precedence and chain.
-#    `2 == 2 in [True, 1]` evaluates as `(2 == 2) and (2 in [True, 1])` -> True.
-#    Because comparisons beat bitwise OR, `3 | True` executes next -> 3.
-#
-# 4. Logical Operators: not > and > or
-#    `3 and (not False)` -> `3 and True` -> True.
-#    `True or 99` short-circuits to True.
-#
-# 5. Ternary: `if-else` has the lowest precedence here.
-#    `True if (5 > 2) else 0` resolves to True.
+# PRECEDENCE BREAKDOWN:
+# 1. Math & Shifts : (-2**2 * 3 + 1 << 2) -> -44
+# 2. Bitwise Logic : (-44 & 15 ^ 7 | 2) -> 3
+# 3. Comparisons   : (3 == 2 in [True, 1]) -> (3 == 2) and (2 in ...) -> False
+# 4. Booleans      : False and (not False) or 99 -> False or 99 -> 99
+# 5. Ternary       : 99 if (5 > 2) else 0 -> 99
 result = -2 ** 2 * 3 + 1 << 2 & 15 ^ 7 | 2 == 2 in [True, 1] and not False or 99 if 5 > 2 else 0
 print(f"Result of complex expression: {result}")
