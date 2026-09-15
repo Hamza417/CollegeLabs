@@ -1,8 +1,8 @@
-# Simulated raw data representing form submissions (contains duplicates)
+# Simulated raw data representing form submissions (can contain duplicates)
 raw_registrations = [
     "adib@email.com", "adim@email.com", "aysha@email.com",
     "saima@email.com", "shifa@email.com", "hassan@email.com",
-    "riyaz@email.com", "mobasshara@email.com"
+    "riyaz@email.com", "mobasshara@email.com", "adib@email.com"
 ]
 
 # Simulated data for people who actually scanned their ticket at the door

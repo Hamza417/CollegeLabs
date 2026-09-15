@@ -15,8 +15,7 @@ def process_purchase(item_id, quantity):
         print("Transaction Failed: Invalid ID or insufficient stock.")
 
 
-# Simulating a purchase to match the desired dashboard output
-# (Buying 2 Laptops brings the stock from 10 down to 8)
+# Simulating a purchase
 process_purchase(101, 2)
 
 # Task 2, 4, & 5: Filter low stock, calculate valuation, and print dashboard
