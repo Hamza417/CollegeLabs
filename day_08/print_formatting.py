@@ -1,0 +1,1 @@
+print(f"{'GOURMET BISTRO RECEIPT':^50}")
