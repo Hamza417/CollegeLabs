@@ -11,7 +11,7 @@ activity_logs = [
     {"day": "Fri", "steps": 2100, "calories": 410, "goal_met": True}
 ]
 
-# Constant for the daily step goal
+# Constants
 DAILY_STEP_GOAL = 5000
 MET_INDICATOR = "✔️"
 NOT_MET_INDICATOR = "❌"
