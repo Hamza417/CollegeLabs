@@ -5,7 +5,7 @@
 # it is more apt to calculate it dynamically based on the daily step goal.
 activity_logs = [
     {"day": "Mon", "steps": 10200, "calories": 450, "goal_met": True},
-    {"day": "Tue", "steps": 8500, "calories": 380, "goal_met": True},
+    {"day": "Tue", "steps": 8550, "calories": 380, "goal_met": True},
     {"day": "Wed", "steps": 4300, "calories": 200, "goal_met": False},
     {"day": "Thu", "steps": 11000, "calories": 500, "goal_met": True},
     {"day": "Fri", "steps": 2100, "calories": 410, "goal_met": True}
@@ -15,6 +15,15 @@ activity_logs = [
 DAILY_STEP_GOAL = 5000
 MET_INDICATOR = "✔️"
 NOT_MET_INDICATOR = "❌"
+
+
+# function to format steps e.g., 1500 -> 1.5K
+def format_steps(steps):
+    """Formats step counts into a more readable format (e.g., 1500 -> 1.5K)."""
+    if steps >= 1000:
+        return f"{steps / 1000:.2f}K"
+    return str(steps)
+
 
 # Initialize aggregation variables
 total_steps = 0
@@ -52,10 +61,10 @@ for log in activity_logs:
     goal_status = MET_INDICATOR if log["goal_met"] else NOT_MET_INDICATOR
 
     # Note: Formatting steps with a comma using :,
-    print(f"{log['day']:<5} | {log['steps']:<7,} | {log['calories']:<17} | {goal_status}")
+    print(f"{log['day']:<5} | {format_steps(log['steps']):<7} | {log['calories']:<17} | {goal_status}")
 
 print("-" * 55)
-print(f"{'Total Weekly Steps':<22} : {total_steps:,}")
-print(f"{'Average Daily Steps':<22} : {average_steps:,}")
+print(f"{'Total Weekly Steps':<22} : {format_steps(total_steps)}")
+print(f"{'Average Daily Steps':<22} : {format_steps(average_steps)}")
 print(f"{'Goal Completion Rate':<22} : {goal_completion_rate:.1f}%")
 print("=" * 55)
