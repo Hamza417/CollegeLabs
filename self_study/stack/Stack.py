@@ -1,7 +1,7 @@
 import logging
 
-from self_study.StackOverflow import StackOverflow
-from self_study.StackUnderflow import StackUnderflow
+from self_study.stack.StackOverflow import StackOverflow
+from self_study.stack.StackUnderflow import StackUnderflow
 
 
 class Stack:
