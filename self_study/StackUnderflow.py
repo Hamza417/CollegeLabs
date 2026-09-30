@@ -1,0 +1,2 @@
+class StackUnderflow(Exception):
+    pass
