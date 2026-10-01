@@ -3,50 +3,56 @@ from self_study.utils.operators import operators
 
 
 class Postfix:
-    def __init__(self):
-        self.stack = Stack()
-        self.output: list = []
+    @staticmethod
+    def process_expression(expression: str):
+        if len(expression) == 0:
+            raise ResourceWarning("Expression not defined")
 
-    def postfix(self, expression=""):
-        self.output = []
+        stack = Stack()
+        output: list = []
         chars = expression.split()
 
-        for character in chars:
+        for i, character in enumerate(chars):
+            if character in ("-", "+"):
+                # If it's the 1st token, OR follows an operator, OR follows '('
+                if i == 0 or chars[i - 1] in operators or chars[i - 1] == "(":
+                    character = "u" + character  # Rename '-' to 'u-'
+
             if character == "(":
-                self.stack.push(character)
+                stack.push(character)
                 continue
 
             if character == ")":
-                while not self.stack.is_empty() and self.stack.peek() != "(":
-                    self.output.append(self.stack.pop())
+                while not stack.is_empty() and stack.peek() != "(":
+                    output.append(stack.pop())
 
-                if self.stack.peek():
-                    self.stack.pop()
+                if stack.peek():
+                    stack.pop()
 
                 continue
 
             if character in operators:
                 precedence, associativity = operators[character]
 
-                while not self.stack.is_empty() and self.stack.peek() != "(" and self.stack.peek() in operators:
-                    precedence2, associativity2 = operators[self.stack.peek()]
+                while not stack.is_empty() and stack.peek() != "(" and stack.peek() in operators:
+                    precedence2, associativity2 = operators[stack.peek()]
 
                     if (associativity == "L" and precedence <= precedence2) or (
                             associativity == "R" and precedence < precedence2):
-                        self.output.append(self.stack.pop())
+                        output.append(stack.pop())
                     else:
                         break
 
-                self.stack.push(character)
+                stack.push(character)
                 continue
 
             if character.isalnum():
-                self.output.append(character)
+                output.append(character)
                 continue
 
-            self.output.append(character)
+            output.append(character)
 
-        while not self.stack.is_empty():
-            self.output.append(self.stack.pop())
+        while not stack.is_empty():
+            output.append(stack.pop())
 
-        return " ".join(self.output)
+        return " ".join(output)

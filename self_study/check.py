@@ -6,10 +6,9 @@ if __name__ == '__main__':
         "- 5 + 3",  # Unary minus at the start
         "10 * ( - 2 + 4 )",  # Unary minus after a parenthesis
         "A == B || C != D && NOT E",  # Logical and relational operators
-        "5 << 1 + 2"  # Bitwise shift mixed with addition
+        "5 << 1 + 2",  # Bitwise shift mixed with addition
+        ""  # Should throw a ResourceWarning
     ]
 
-    postfix = Postfix()
-
     for test in tests:
-        print(postfix.postfix(test))
+        print(Postfix.process_expression(test))
