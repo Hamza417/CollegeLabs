@@ -1,5 +1,5 @@
 from self_study.stack.Stack import Stack
-from self_study.utils.operators import operators
+from self_study.utils.operators import operators, split_tokens
 
 
 class Postfix:
@@ -10,19 +10,19 @@ class Postfix:
 
         stack = Stack()
         output: list = []
-        chars = expression.split()
+        tokens = split_tokens(expression)
 
-        for i, character in enumerate(chars):
-            if character in ("-", "+"):
+        for i, token in enumerate(tokens):
+            if token in ("-", "+"):
                 # If it's the 1st token, OR follows an operator, OR follows '('
-                if i == 0 or chars[i - 1] in operators or chars[i - 1] == "(":
-                    character = "u" + character  # Rename '-' to 'u-'
+                if i == 0 or tokens[i - 1] in operators or tokens[i - 1] == "(":
+                    token = "u" + token  # Rename '-' to 'u-'
 
-            if character == "(":
-                stack.push(character)
+            if token == "(":
+                stack.push(token)
                 continue
 
-            if character == ")":
+            if token == ")":
                 while not stack.is_empty() and stack.peek() != "(":
                     output.append(stack.pop())
 
@@ -31,8 +31,8 @@ class Postfix:
 
                 continue
 
-            if character in operators:
-                precedence, associativity = operators[character]
+            if token in operators:
+                precedence, associativity = operators[token]
 
                 while not stack.is_empty() and stack.peek() != "(" and stack.peek() in operators:
                     precedence2, associativity2 = operators[stack.peek()]
@@ -43,14 +43,14 @@ class Postfix:
                     else:
                         break
 
-                stack.push(character)
+                stack.push(token)
                 continue
 
-            if character.isalnum():
-                output.append(character)
+            if token.isalnum():
+                output.append(token)
                 continue
 
-            output.append(character)
+            output.append(token)
 
         while not stack.is_empty():
             output.append(stack.pop())

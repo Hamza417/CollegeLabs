@@ -11,4 +11,7 @@ if __name__ == '__main__':
     ]
 
     for test in tests:
-        print(Postfix.process_expression(test))
+        try:
+            print(Postfix.process_expression(test))
+        except ResourceWarning:
+            print(test + " <= is not a valid expression")

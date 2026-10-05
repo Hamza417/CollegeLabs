@@ -1,5 +1,6 @@
 # Format: 'operator': (precedence_level, 'associativity')
 # Higher number = evaluated first
+import re
 
 operators = {
     # Logical Operators
@@ -47,3 +48,23 @@ operators = {
     'u-': (12, 'R'),  # Unary minus (e.g., negative numbers like -5)
     'u+': (12, 'R')  # Unary plus
 }
+
+
+def get_operators_list():
+    return operators.keys()
+
+
+def split_tokens(expression):
+    """
+    Processes the expressions in string into a valid token list for
+    the postfix/prefix operation.
+
+    The inherent processors uses the operators as key separators while
+    still including them and discards any whitespaces.
+
+    :param expression: the expression that needs to be processed in
+                       BODMAS/PEMDAS format including/excluding spaces.
+    :return: list of tokens from the expression.
+    """
+    pattern = "(" + "|".join(map(re.escape, get_operators_list())) + ")"
+    return re.split(pattern, expression.replace(" ", ""))
