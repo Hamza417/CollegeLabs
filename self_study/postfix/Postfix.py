@@ -1,12 +1,18 @@
+from self_study.stack.IllegalArgumentException import IllegalArgumentException
 from self_study.stack.Stack import Stack
-from self_study.utils.operators import operators, split_tokens
+from self_study.utils.operators import operators, split_tokens, validate_expression
 
 
 class Postfix:
     @staticmethod
     def process_expression(expression: str):
+        # We received an empty expression, raise an exception
         if len(expression) == 0:
             raise ResourceWarning("Expression not defined")
+
+        # We received an invalid expression, raise an exception
+        if validate_expression(expression):
+            raise IllegalArgumentException(expression + " <= expression validation has failed, terminating!")
 
         stack = Stack()
         output: list = []
@@ -35,10 +41,12 @@ class Postfix:
                 precedence, associativity = operators[token]
 
                 while not stack.is_empty() and stack.peek() != "(" and stack.peek() in operators:
-                    precedence2, associativity2 = operators[stack.peek()]
+                    precedence2, _ = operators[stack.peek()]
 
-                    if (associativity == "L" and precedence <= precedence2) or (
-                            associativity == "R" and precedence < precedence2):
+                    is_ltr_associativity = associativity == "L" and precedence <= precedence2
+                    is_rtl_associativity = associativity == "R" and precedence < precedence2
+
+                    if is_ltr_associativity or is_rtl_associativity:
                         output.append(stack.pop())
                     else:
                         break

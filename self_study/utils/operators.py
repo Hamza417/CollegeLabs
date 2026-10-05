@@ -68,3 +68,10 @@ def split_tokens(expression):
     """
     pattern = "(" + "|".join(map(re.escape, get_operators_list())) + ")"
     return re.split(pattern, expression.replace(" ", ""))
+
+
+def validate_expression(expression):
+    allowed = "".join(map(re.escape, operators))
+    pattern = rf"^[a-zA-Z0-9\s{allowed}]+$"
+
+    return re.fullmatch(pattern, expression)

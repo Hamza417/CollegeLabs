@@ -1,4 +1,5 @@
 from self_study.postfix.Postfix import Postfix
+from self_study.stack.IllegalArgumentException import IllegalArgumentException
 
 if __name__ == '__main__':
     tests = [
@@ -7,11 +8,10 @@ if __name__ == '__main__':
         "10 * ( - 2 + 4 )",  # Unary minus after a parenthesis
         "A == B || C != D && NOT E",  # Logical and relational operators
         "5 << 1 + 2",  # Bitwise shift mixed with addition
-        ""  # Should throw a ResourceWarning
+        "",  # Should throw a ResourceWarning
+        "5,5<8}" # This should throw an illegal argument exception
     ]
 
     for test in tests:
-        try:
-            print(Postfix.process_expression(test))
-        except ResourceWarning:
-            print(test + " <= is not a valid expression")
+        print(Postfix.process_expression(test))
+
