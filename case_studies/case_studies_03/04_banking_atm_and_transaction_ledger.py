@@ -1,62 +1,67 @@
-# Task 1: Initialize account details in a dictionary (assume this is a database record for a single user)
-account = {
+# Constants
+ACCOUNT = {
     'account_number': '88291039',
     'holder_name': 'Adib Khan',
     'pin': '1234',
     'balance': 1000.00,
-    'initial_balance': 1000.00,  # Stored separately to anchor the ledger
-    'transactions': []  # Empty list for the audit trail
+    'initial_balance': 1000.00,
+    'transactions': []
 }
 
-# Task 2: Implement a loop that verifies customer PIN using if-else
+# Declare the variables
 authenticated = False
-entered_pin = ""
+transaction_status = []
 
-while entered_pin != account['pin']:
+# Authenticate user
+while not authenticated:
     entered_pin = input("Enter your 4-digit PIN: ").strip()
-
-    if entered_pin == account['pin']:
+    if entered_pin == ACCOUNT['pin']:
         authenticated = True
-        print("Authentication Successful.", end="\n\n")
+        print("Authentication Successful.\n")
     else:
         print("Invalid PIN. Please try again.")
 
-# Erase entered pin store after authentication for security
-entered_pin = ""
+deposit_amount = float(input("Enter amount to deposit: $"))
+withdrawal_amount = float(input("Enter amount to withdraw: $"))
 
-# Task 3 & 4: Create transactions and validate withdrawal limits
-if authenticated:
-    # Processing a Deposit
-    deposit_amount = 250.00
-    account['balance'] += deposit_amount
-    account['transactions'].append(('Deposit', deposit_amount))
+# Evaluate the transactions
+if deposit_amount > 0:
+    ACCOUNT['balance'] += deposit_amount
+    ACCOUNT['transactions'].append(('Deposit', deposit_amount))
+    transaction_status.append(f"Deposit Approved (+${deposit_amount:.2f})")
 
-    # Processing a Withdrawal with Limit Validation
-    withdrawal_amount = 100.00
-    if account['balance'] - withdrawal_amount >= 0:
-        account['balance'] -= withdrawal_amount
-        account['transactions'].append(('Withdrawal', withdrawal_amount))
+if withdrawal_amount > 0:
+    if ACCOUNT['balance'] >= withdrawal_amount:
+        ACCOUNT['balance'] -= withdrawal_amount
+        ACCOUNT['transactions'].append(('Withdrawal', withdrawal_amount))
+        transaction_status.append(f"Withdrawal Approved (-${withdrawal_amount:.2f})")
     else:
-        # Prevents balance from dropping below zero
-        print("Transaction Denied: Insufficient Funds.")
+        transaction_status.append(f"Withdrawal Denied (Insufficient Funds for ${withdrawal_amount:.2f})")
 
-# Task 5: Output a formatted Bank Account Statement Report
+# Show the dashboard
+print()
 print("=" * 55)
 print(f"{'BANK STATEMENT REPORT':^55}")
 print("=" * 55)
-print(f"Account Number: {account['account_number']}")
-print(f"Holder Name   : {account['holder_name']}")
+print(f"Account Number: {ACCOUNT['account_number']}")
+print(f"Holder Name   : {ACCOUNT['holder_name']}")
+print("-" * 55)
+
+# Display recent transaction statuses
+for status in transaction_status:
+    print(f"System: {status}")
+
 print("-" * 55)
 print(f"{'Type':<15} | {'Amount ($)':<12} | {'Balance ($)'}")
 print("-" * 55)
 
 # Print initial state
-print(f"{'Initial Balance':<15} | {'':<12} | {account['initial_balance']:,.2f}")
+print(f"{'Initial Balance':<15} | {'':<12} | {ACCOUNT['initial_balance']:,.2f}")
 
 # Reconstruct rolling balance for the ledger display
-rolling_balance = account['initial_balance']
+rolling_balance = ACCOUNT['initial_balance']
 
-for transaction_type, amount in account['transactions']:
+for transaction_type, amount in ACCOUNT['transactions']:
     if transaction_type == 'Deposit':
         rolling_balance += amount
     elif transaction_type == 'Withdrawal':
@@ -65,5 +70,5 @@ for transaction_type, amount in account['transactions']:
     print(f"{transaction_type:<15} | {amount:<12,.2f} | {rolling_balance:,.2f}")
 
 print("-" * 55)
-print(f"Closing Balance : ${account['balance']:,.2f}")
+print(f"{'Closing Balance':<15} : ${ACCOUNT['balance']:,.2f}")
 print("=" * 55)
