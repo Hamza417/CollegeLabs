@@ -1,25 +1,24 @@
-# Task 1: Store student records in a dictionary
-# Key: Student ID | Value: Tuple (Name, Math, Science, English)
-students = {
+# Constants
+STUDENTS = {
     'S101': ('Adib', 85, 80, 88),
     'S102': ('Riyaz', 95, 90, 90),
     'S103': ('Hamza', 60, 62, 64)
 }
 
+# Declare the variables
 processed_students = []
 class_total_score = 0.0
 
-# Task 2 & 3: Compute averages and assign grades
-for student_id, data in students.items():
+# Evaluate the grades and rankings
+for student_id, data in STUDENTS.items():
     name = data[0]
     grades = data[1:]
 
-    # Task 2: Compute average using arithmetic operators and type casting
-    # Explicitly casting the sum to a float before division
+    # Compute average
     average = float(sum(grades)) / len(grades)
     class_total_score += average
 
-    # Task 3: Nested if-elif-else statements for letter grades and status
+    # Assign letter grades and status
     if average >= 90:
         grade = 'A'
         status = 'PASS'
@@ -33,7 +32,7 @@ for student_id, data in students.items():
         grade = 'F'
         status = 'FAIL'
 
-    # Append to a list for sorting later
+    # Append to our list for processing
     processed_students.append({
         'id': student_id,
         'name': name,
@@ -42,28 +41,26 @@ for student_id, data in students.items():
         'status': status
     })
 
-# Task 4: Sort the list of students by average marks in descending order
-# Using a lambda function to target the 'average' key for sorting
+# Sort the list by average marks in descending order
 processed_students.sort(key=lambda x: x['average'], reverse=True)
 
-# Task 5: Output structured Student Gradebook Report
-print("=" * 55)
-print(f"{'ACADEMIC PERFORMANCE DASHBOARD':^55}")
-print("=" * 55)
-print(f"{'Rank':<4} | {'ID':<6} | {'Name':<10} | {'Average':<7} | {'Grade':<5} | Status")
-print("-" * 55)
-
-# Enumerate allows us to automatically generate the Rank (starting at 1)
-for rank, student in enumerate(processed_students, start=1):
-    print(f"{rank:<4} | {student['id']:<6} | {student['name']:<10} | "
-          f"{student['average']:<7.2f} | {student['grade']:<5} | {student['status']}")
-
-print("-" * 55)
-
 # Calculate class-wide statistics
-class_average = class_total_score / len(students)
+class_average = class_total_score / len(STUDENTS)
 top_student = processed_students[0]
 
-print(f"Class Average Score   : {class_average:.2f}")
-print(f"Top Scoring Student   : {top_student['name']} ({top_student['average']:.2f})")
-print("=" * 55)
+# Show the dashboard
+print()
+print("=" * 60)
+print(f"{'ACADEMIC PERFORMANCE DASHBOARD':^60}")
+print("=" * 60)
+print(f"{'Rank':<5} | {'ID':<6} | {'Name':<12} | {'Average':<7} | {'Grade':<5} | Status")
+print("-" * 60)
+
+# Iterate to display the formatted rows
+for rank, student in enumerate(processed_students, start=1):
+    print(f"{rank:<5} | {student['id']:<6} | {student['name']:<12} | {student['average']:<7.2f} | {student['grade']:<5} | {student['status']}")
+
+print("-" * 60)
+print(f"{'Class Average Score':<25}: {class_average:.2f}")
+print(f"{'Top Scoring Student':<25}: {top_student['name']} ({top_student['average']:.2f})")
+print("=" * 60)
