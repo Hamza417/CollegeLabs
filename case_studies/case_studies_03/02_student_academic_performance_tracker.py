@@ -1,8 +1,8 @@
 # Constants
 STUDENTS = {
-    'S101': ('Adib', 85, 80, 88),
-    'S102': ('Riyaz', 95, 90, 90),
-    'S103': ('Hamza', 60, 62, 64)
+    'S101': ('Adib', 36, 98, 71),
+    'S102': ('Riyaz', 28, 96, 56),
+    'S103': ('Hamza', 60, 24, 64)
 }
 
 # Declare the variables

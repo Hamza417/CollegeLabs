@@ -8,7 +8,9 @@ activity_logs = [
     {"day": "Tue", "steps": 8550, "calories": 380, "goal_met": True},
     {"day": "Wed", "steps": 4300, "calories": 200, "goal_met": False},
     {"day": "Thu", "steps": 11000, "calories": 500, "goal_met": True},
-    {"day": "Fri", "steps": 2100, "calories": 410, "goal_met": True}
+    {"day": "Fri", "steps": 2100, "calories": 410, "goal_met": True},
+    {"day": "Sat", "steps": 4500, "calories": 750, "goal_met": True},
+    {"day": "Sun", "steps": 8500, "calories": 900, "goal_met": True},
 ]
 
 # Constants

@@ -27,20 +27,20 @@ def call_next_patient():
 # ========================== Simulating Triage Operations ==========================
 
 # 1. A critical patient arrives and is added to the empty queue
-add_patient("Jane Roe", 55, True)
+add_patient("Hamza Rizwan", 55, True)
 
 # 2. Regular patients arrive and are appended to the back
-add_patient("Mary Smith", 29, False)
-add_patient("Alex Brown", 42, False)
+add_patient("Sana Khan", 29, False)
+add_patient("Adib Khan", 42, False)
 
 # 3. A doctor becomes available and calls the first patient (Jane Roe is dequeued)
 call_next_patient()
 
 # 4. A new critical patient arrives and jumps to the front of the line
-add_patient("John Doe", 64, True)
+add_patient("Riyaz Ahmad", 64, True)
 
 # 5. Another regular patient arrives and is added to the back
-add_patient("Emily Davis", 37, False)
+add_patient("Adim Akhtar", 37, False)
 
 # A major issue here any new critical patient will always be added to the front of the queue,
 # regardless of how many critical patients are already waiting. This could lead to a situation
@@ -49,7 +49,7 @@ add_patient("Emily Davis", 37, False)
 
 # 6. A new critical patient arrives and is added to the front of the queue
 # Like in this case, Michael will be given priority over John Doe, even though John has been waiting longer.
-add_patient("Michael Johnson", 70, True)
+add_patient("Zoha Malika", 70, True)
 
 # One way to simply solve this is to maintain a separate priority queue for critical patients where
 # they are first in the main line but still maintain their order of arrival among themselves.

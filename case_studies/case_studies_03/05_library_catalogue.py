@@ -1,8 +1,8 @@
 # Constants
 CATALOG = {
-    'B101': {'title': 'Python Fundamentals', 'author': 'John Doe'},
-    'B102': {'title': 'Data Science Essentials', 'author': 'Jane Smith'},
-    'B103': {'title': 'Clean Code Principles', 'author': 'Robert Roe'}
+    'B101': {'title': 'Java Programming Language', 'author': 'John Doe'},
+    'B102': {'title': 'Database and SQL', 'author': 'Jane Smith'},
+    'B103': {'title': 'Software Engineering', 'author': 'Robert Roe'}
 }
 
 # Initialize state

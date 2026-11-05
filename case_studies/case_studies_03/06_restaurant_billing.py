@@ -1,9 +1,9 @@
 # Constants
 MENU = {
-    101: ("gourmet burger", 12.50),
-    102: ("garlic fries", 5.00),
-    103: ("soda", 2.50),
-    104: ("chef salad", 9.00)
+    101: ("chicken burger", 112.50),
+    102: ("lehsun fries", 15.00),
+    103: ("pepsi", 2.50),
+    104: ("chef salad", 19.00)
 }
 TAX_RATE = 0.08
 DISCOUNT_THRESHOLD = 50.00

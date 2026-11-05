@@ -1,16 +1,9 @@
-from box_utils import (
-    print_top_border,
-    print_bottom_border,
-    print_separator,
-    render_title,
-    render_row,
-    render_marks
-)
+from box_utils import *
 
 MAX_MARKS = 20 + 15 + 25 + 50 # 110 Total
 
 def generate_student_dashboard(name, student_id, internal, assignment, midterm, endsem, attendance):
-    # ======= Academic Calculations =======
+    # Academic Calculations
     total_marks = internal + assignment + midterm + endsem
     percentage = (total_marks / MAX_MARKS) * 100
 
@@ -27,11 +20,11 @@ def generate_student_dashboard(name, student_id, internal, assignment, midterm, 
     else:
         grade = 'F'
 
-    # ======= Status Calculations =======
+    # Status Calculations
     is_eligible = attendance >= 75
     is_pass = (percentage >= 40) and is_eligible
 
-    # ======= Dashboard UI Generation =======
+    # Dashboard UI Generation
     print()
     print_top_border()
     render_title("STUDENT RESULT DASHBOARD")
@@ -60,7 +53,7 @@ def generate_student_dashboard(name, student_id, internal, assignment, midterm, 
 
 
 
-# ======= Execution & Test Cases =======
+# Execution & Test Cases
 if __name__ == "__main__":
     """
     TEST CASES DOCUMENTATION:

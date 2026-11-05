@@ -1,7 +1,7 @@
 # Constants
 ACCOUNT = {
     'account_number': '88291039',
-    'holder_name': 'Adib Khan',
+    'holder_name': 'Hamza Rizwan',
     'pin': '1234',
     'balance': 1000.00,
     'initial_balance': 1000.00,

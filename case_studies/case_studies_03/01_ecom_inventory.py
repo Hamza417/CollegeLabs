@@ -1,8 +1,8 @@
 # Constants
 INVENTORY = {
-    101: {'name': 'Laptop', 'price': 800.00, 'stock': 10},
-    102: {'name': 'Mouse', 'price': 25.00, 'stock': 45},
-    103: {'name': 'Keyboard', 'price': 50.00, 'stock': 12}
+    101: {'name': 'PC', 'price': 2500.00, 'stock': 10},
+    102: {'name': 'Speaker', 'price': 500.00, 'stock': 45},
+    103: {'name': 'Printer', 'price': 900.00, 'stock': 12}
 }
 
 LOW_STOCK_THRESHOLD = 10
