@@ -1,0 +1,5 @@
+Seminar|AI & Data Science|120
+Workshop|Python Programming|80
+Hackathon|Innovation Challenge|150
+Seminar|Machine Learning|100
+Workshop|Cyber Security|75
